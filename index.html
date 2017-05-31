@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <title>Crystal Collector Game</title>
+    <!-- Layout Set Up -->
+    <style>
+    .container {
+        background: blue;
+    }
+    
+    .row {
+        background: darkgrey;
+    }
+    
+    .col-md-5 {
+        background: lightgrey;
+        border: 2px black solid;
+        text-align: center;
+        padding: 10px 15px;
+        margin: 15px;
+    }
+    
+    .btn {
+        padding: 20px;
+        margin: 5px;
+    }
+    
+    .counter-box {
+        padding: 10px;
+        margin: 15px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h2 class="text-center">Crystal Collector Game</h2>
+        <div class="text-center">
+            <h4>Rules of the Game	</h4>
+        </div>
+    </div>
+    <!-- Container for boxes -->
+    <div class="container">
+        <!-- First row for Goal Score and User Score -->
+        <div class="row">
+            <!-- Goal (Computer RNG) Score -->
+            <div class="col-md-5">
+                Goal Score :
+                <!-- Place Holder ID for Goal Score -->
+                <div id="goal-score">
+                </div>
+            </div>
+            <!-- User Score -->
+            <div class="col-md-5">
+                User Score :
+                <div id="user-score">
+                </div>
+            </div>
+        </div>
+        <!-- New Row for buttons  -->
+        <div class="row">
+            <!-- Column of buttons to center -->
+            <div class="col-md-12">
+                <!-- Four Buttons -->
+                <button id="buttonA" type="button" class="btn btn-primary">Button A</button>
+                <button id="buttonB" type="button" class="btn btn-success">Button B</button>
+                <button id="buttonX" type="button" class="btn btn-warning">Button X</button>
+                <button id="buttonY" type="button" class="btn btn-danger">Button Y</button>
+            </div>
+        </div>
+        <!-- Row for Counter -->
+        <div class="row">
+            <!-- Container for Counter -->
+            <div id="counter-box">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript">
+    // Game Variables
+    var goalScore;
+    var aBtnValue = Math.floor(Math.random() * 12) + 1;
+    var bBtnValue = Math.floor(Math.random() * 12) + 1;
+    var xBtnValue = Math.floor(Math.random() * 12) + 1;
+    var yBtnValue = Math.floor(Math.random() * 12) + 1;
+    var wins = 0;
+    var losses = 0;
+    var userScore = 0;
+
+    // Reset Function after win or loss
+    var reset = function() {
+        var userScore = 0;
+        var goalScore = Math.floor(Math.random() * 100) + 20;
+        var aBtnValue = Math.floor(Math.random() * 12) + 1;
+        var bBtnValue = Math.floor(Math.random() * 12) + 1;
+        var xBtnValue = Math.floor(Math.random() * 12) + 1;
+        var yBtnValue = Math.floor(Math.random() * 12) + 1;
+    }
+
+
+
+    // Goal Score RNG
+    var goalScore = Math.floor(Math.random() * 100) + 20;
+
+    // Display Goal Score in Goal Score Div
+    $("#goal-score").append(goalScore);
+
+
+    // Button A test
+    $("#buttonA").on("click", function() {
+        console.log(aBtnValue);
+        userScore += aBtnValue;
+        alert(userScore);
+        $("#user-score").html(userScore);
+        if (userScore == goalScore) {
+            wins++;
+            reset();
+        } else if (userScore > goalScore) {
+            losses++;
+            reset();
+        }
+    })
+
+
+    $("#buttonB").click(function() {
+        console.log(bBtnValue);
+        userScore += bBtnValue;
+        alert(userScore);
+        $("#user-score").html(userScore);
+        if (userScore == goalScore) {
+            wins++;
+            reset();
+        } else if (userScore > goalScore) {
+            losses++;
+            reset();
+        }
+    })
+
+    $("#buttonX").click(function() {
+        console.log(xBtnValue);
+        userScore += xBtnValue;
+        alert(userScore);
+        $("#user-score").html(userScore);
+        if (userScore == goalScore) {
+            wins++;
+            reset();
+        } else if (userScore > goalScore) {
+            losses++;
+            reset();
+        }
+    })
+
+    $("#buttonY").click(function() {
+        console.log(yBtnValue);
+        userScore += yBtnValue;
+        alert(userScore);
+        $("#user-score").html(userScore);
+        if (userScore == goalScore) {
+            wins++;
+            reset();
+        } else if (userScore > goalScore) {
+            losses++;
+            reset();
+        }
+
+    })
+    
+    $("#counter-box").html("wins : " + wins);
+    $("#counter-box").html("losses : " + losses);
+
+    </script>
+</body>
+
+</html>
